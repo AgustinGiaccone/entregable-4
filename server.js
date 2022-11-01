@@ -5,7 +5,6 @@ const Contenedor = require('./Contenedor.js')
 const server = express()
 const port = process.env.PORT || 8080
 const routerVehiculo = new Router()
-
 const vehiculos = new Contenedor('productos.txt')
 
 const servidor = server.listen(port, () => {
