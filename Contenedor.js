@@ -130,6 +130,46 @@ async writeFile(archivo, contenido) {
         console.log(error);
     }
 }
+
+deleteById = async (id)=>{
+  try {
+      if (this.exists(this.archivo)) {
+          const productos = await this.readFile(this.archivo);
+          if (productos.some(producto => producto.id === id)) {
+              const productos = await this.readFile(this.archivo);
+              const datos = productos.filter(producto => producto.id !== id);
+              this.writeFile(this.archivo, datos);
+              console.log(`vehiculo con el id ${id} eliminado`);
+          } else {
+              console.log(`No se encontro el vehiculo con el id ${id}`);
+          }
+      }
+  } catch (error) {
+      console.log(error);
+  }
+}
+
+editById = async (paramId,title,precio,Thumbnail)=>{
+  let ids = {};
+  try {
+      if (this.exists(this.archivo)) {
+          const productos = await this.readFile(this.archivo);
+          if (productos.some(producto => producto.id === paramId)) {
+              const productos = await this.readFile(this.archivo);
+              const productoParaEditar = productos.filter(producto => producto.id == paramId);
+              productos.map((item, index) => {ids[item.id] = index})
+              productos[ids[paramId]].title = title
+              productos[ids[paramId]].precio = precio
+              productos[ids[paramId]].Thumbnail = Thumbnail
+              this.writeFile(this.archivo, productos)
+          } else {
+              console.log(`No se encontro el vehiculo con el id ${paramId}`);
+          }
+      }
+  } catch (error) {
+      console.log(error);
+  }
+}
 }
 
 module.exports = Contenedor
