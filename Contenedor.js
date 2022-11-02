@@ -149,7 +149,7 @@ deleteById = async (id)=>{
   }
 }
 
-editById = async (paramId,title,precio,Thumbnail)=>{
+editById = async (paramId,title,precio,thumbnail)=>{
   let ids = {};
   try {
       if (this.exists(this.archivo)) {
@@ -160,7 +160,7 @@ editById = async (paramId,title,precio,Thumbnail)=>{
               productos.map((item, index) => {ids[item.id] = index})
               productos[ids[paramId]].title = title
               productos[ids[paramId]].precio = precio
-              productos[ids[paramId]].Thumbnail = Thumbnail
+              productos[ids[paramId]].thumbnail = thumbnail
               this.writeFile(this.archivo, productos)
           } else {
               console.log(`No se encontro el vehiculo con el id ${paramId}`);
