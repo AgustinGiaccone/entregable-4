@@ -149,7 +149,7 @@ deleteById = async (id)=>{
   }
 }
 
-editById = async (paramId,title,precio,thumbnail)=>{
+editById = async (paramId,title,price,thumbnail)=>{
   let ids = {};
   try {
       if (this.exists(this.archivo)) {
@@ -159,7 +159,7 @@ editById = async (paramId,title,precio,thumbnail)=>{
               const productoParaEditar = productos.filter(producto => producto.id == paramId);
               productos.map((item, index) => {ids[item.id] = index})
               productos[ids[paramId]].title = title
-              productos[ids[paramId]].precio = precio
+              productos[ids[paramId]].price = price
               productos[ids[paramId]].thumbnail = thumbnail
               this.writeFile(this.archivo, productos)
           } else {

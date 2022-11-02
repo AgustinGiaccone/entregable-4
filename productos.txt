@@ -3,7 +3,6 @@
     "id": 1,
     "title": "hilux",
     "price": 7000000,
-    "precio": "8000000",
     "Thumbnail": "toyota.png"
   },
   {
@@ -21,13 +20,13 @@
   {
     "id": 4,
     "title": "ranger",
-    "precio": "5000000000",
+    "price": "5000000000",
     "Thumbnail": "pruebas.png"
   },
   {
     "id": 5,
     "title": "ajgkeg",
-    "precio": "45679845",
+    "price": "45679845",
     "thumbnail": "prueba-kazam.png"
   }
 ]
