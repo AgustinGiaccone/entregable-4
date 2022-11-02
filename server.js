@@ -9,6 +9,7 @@ routerProductos.use(express.urlencoded({extended:true}))
 routerProductos.use(express.json())
 const itemRouter = express.Router({mergeParams: true})
 const vehiculos = new Contenedor('productos.txt')
+const notFound = { error: "Producto no encontrado" };
 
 
 app.use('/api', routerProductos)
@@ -47,7 +48,9 @@ itemRouter.get('/:id', async(req,res)=>{
     const id = parseInt(req.params.id);
     const producto = await vehiculos.getById(id);
     console.log('el id buscado es', id)
-    res.send(producto)
+    // res.send(producto)
+    !producto && res.status(404).json(notFound);
+    res.status(200).json(producto);
 })
 
 routerProductos.post('/productos',async(req,res)=>{
@@ -70,7 +73,7 @@ itemRouter.put('/:id', async(req,res)=>{
     const id = parseInt(req.params.id);
     const title = req.body.title
     const precio = req.body.precio
-    const thumbnail = req.body.Thumbnail
+    const thumbnail = req.body.thumbnail
     const producto = await vehiculos.editById(id,title,precio,thumbnail);
     const automovil = await vehiculos.getAll()
     res.send(automovil)
